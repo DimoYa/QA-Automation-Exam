@@ -1,11 +1,10 @@
-﻿namespace UiSolution.PageObjects.CreateContractsPage
+﻿namespace UiSolution.PageObjects.CreateContactPage
 {
     using OpenQA.Selenium;
-    using System.Threading;
 
-    public partial class CreateContractsPage : BasePage
+    public partial class CreateContactPage : BasePage
     {
-        public CreateContractsPage(IWebDriver driver) 
+        public CreateContactPage(IWebDriver driver) 
             : base(driver)
         { }
 

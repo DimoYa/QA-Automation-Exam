@@ -1,6 +1,5 @@
 ﻿namespace AndroidSolution.Tests
 {
-    using AndroidSolution.PageObjects.ContactAppPages;
     using NUnit.Framework;
 
     public class ContactsAppTests : BaseTest

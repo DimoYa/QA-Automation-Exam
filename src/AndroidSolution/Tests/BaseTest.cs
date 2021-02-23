@@ -17,7 +17,6 @@ namespace AndroidSolution.Tests
 
         protected ContactAppPage ContactAppPage { get; private set; }
 
-
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {

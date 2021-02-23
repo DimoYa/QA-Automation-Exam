@@ -1,8 +1,6 @@
 ﻿namespace UiSolution.Tests
 {
     using NUnit.Framework;
-    using UiSolution.PageObjects.HomePage;
-    using UiSolution.PageObjects.ViewContactsPage;
 
     public class ViewContactsTests : BaseTest
     {

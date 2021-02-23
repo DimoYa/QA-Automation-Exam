@@ -3,10 +3,9 @@ namespace UiSolution.Tests
     using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
-    using System;
     using System.IO;
     using System.Reflection;
-    using UiSolution.PageObjects.CreateContractsPage;
+    using UiSolution.PageObjects.CreateContactPage;
     using UiSolution.PageObjects.HomePage;
     using UiSolution.PageObjects.SearchContactsPage;
     using UiSolution.PageObjects.ViewContactsPage;
@@ -32,7 +31,6 @@ namespace UiSolution.Tests
         {
             this.Driver = new ChromeDriver(LocalPath);
             this.Driver.Manage().Window.Maximize();
-            this.Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
         }
 
         [SetUp]

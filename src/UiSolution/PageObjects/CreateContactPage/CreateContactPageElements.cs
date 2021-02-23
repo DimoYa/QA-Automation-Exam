@@ -1,9 +1,9 @@
-﻿namespace UiSolution.PageObjects.CreateContractsPage
+﻿namespace UiSolution.PageObjects.CreateContactPage
 {
     using OpenQA.Selenium;
     using SeleniumExtras.WaitHelpers;
 
-    public partial class CreateContractsPage : BasePage
+    public partial class CreateContactPage : BasePage
     {
         public IWebElement InputFirstName =>
          this.Wait.Until(ExpectedConditions.ElementIsVisible(By.Id("firstName")));

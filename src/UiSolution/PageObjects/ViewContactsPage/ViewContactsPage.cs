@@ -8,7 +8,7 @@
             : base(driver)
         { }
 
-        public string GetGirstContactFromList()
+        public string GetFirstContactFromList()
         {
             var result = $"{this.OldestFirstName.Text} {this.OldestLastName.Text}";
             return result;

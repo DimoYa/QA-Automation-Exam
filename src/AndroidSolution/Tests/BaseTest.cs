@@ -1,5 +1,6 @@
 namespace AndroidSolution.Tests
 {
+    using AndroidSolution.PageObjects.ContactAppPages;
     using NUnit.Framework;
     using OpenQA.Selenium.Appium;
     using OpenQA.Selenium.Appium.Android;
@@ -14,6 +15,9 @@ namespace AndroidSolution.Tests
 
         protected AndroidDriver<AndroidElement> Driver { get; private set; }
 
+        protected ContactAppPage ContactAppPage { get; private set; }
+
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -24,6 +28,12 @@ namespace AndroidSolution.Tests
             this.appiumOptions = new AppiumOptions() { PlatformName = "Android" };
             this.appiumOptions.AddAdditionalCapability("app", appDirectory);
             this.Driver = new AndroidDriver<AndroidElement>(new Uri(appiumServer), appiumOptions);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.ContactAppPage = new ContactAppPage(this.Driver);
         }
 
         [OneTimeTearDown]

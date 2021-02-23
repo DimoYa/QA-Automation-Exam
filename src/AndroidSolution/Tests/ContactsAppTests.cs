@@ -5,14 +5,6 @@
 
     public class ContactsAppTests : BaseTest
     {
-        private ContactAppPage contactAppPage;
-
-        [SetUp]
-        public void SetUp()
-        {
-            this.contactAppPage = new ContactAppPage(this.Driver);
-        }
-
         [Test]
         public void SearchShouldBeSuccessfull()
         {
@@ -20,12 +12,12 @@
             var searchedPhase = "steve";
 
             //Act
-            this.contactAppPage.ConnectToTheBackEnd();
-            this.contactAppPage.SearchForAContact(searchedPhase);
+            this.ContactAppPage.ConnectToTheBackEnd();
+            this.ContactAppPage.SearchForAContact(searchedPhase);
 
             //Assert
             var expectedResult = "Steve Jobs";
-            var actualResult = this.contactAppPage.GetReturnedResult();
+            var actualResult = this.ContactAppPage.GetReturnedResult();
 
             Assert.AreEqual(expectedResult, actualResult, "Result should be correct");
         }

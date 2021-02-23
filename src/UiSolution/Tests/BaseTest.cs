@@ -6,6 +6,10 @@ namespace UiSolution.Tests
     using System;
     using System.IO;
     using System.Reflection;
+    using UiSolution.PageObjects.CreateContractsPage;
+    using UiSolution.PageObjects.HomePage;
+    using UiSolution.PageObjects.SearchContactsPage;
+    using UiSolution.PageObjects.ViewContactsPage;
 
     [TestFixture]
     public abstract class BaseTest
@@ -15,12 +19,29 @@ namespace UiSolution.Tests
 
         protected IWebDriver Driver { get; private set; }
 
+        protected HomePage HomePage { get; private set; }
+
+        protected ViewContactsPage ViewContactsPage { get; private set; }
+
+        protected CreateContactPage CreateContactPage { get; private set; }
+
+        protected SearchContactsPage SearchContactsPage { get; private set; }
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             this.Driver = new ChromeDriver(LocalPath);
             this.Driver.Manage().Window.Maximize();
             this.Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.HomePage = new HomePage(this.Driver);
+            this.ViewContactsPage = new ViewContactsPage(this.Driver);
+            this.CreateContactPage = new CreateContactPage(this.Driver);
+            this.SearchContactsPage = new SearchContactsPage(this.Driver);
         }
 
         [OneTimeTearDown]

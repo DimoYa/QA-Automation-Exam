@@ -12,8 +12,8 @@
             this.Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        protected WebDriverWait Wait { get; set; }
-        protected IWebDriver Driver { get; set; }
-        protected string BaseUrl => "https://contactbook.nakov.repl.co/";
+        protected WebDriverWait Wait { get; private set; }
+        protected IWebDriver Driver { get; private set; }
+        protected string BaseUrl => "https://contactbook.dimoya.repl.co/";
     }
 }

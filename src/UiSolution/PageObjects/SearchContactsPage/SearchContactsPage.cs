@@ -1,7 +1,6 @@
 ﻿namespace UiSolution.PageObjects.SearchContactsPage
 {
     using OpenQA.Selenium;
-    using System.Threading;
 
     public partial class SearchContactsPage : BasePage
     {

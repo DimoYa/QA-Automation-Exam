@@ -6,7 +6,7 @@
     {
         public HomePage(IWebDriver driver) 
             : base(driver)
-        {}
+        { }
 
         public void NavigateToMainUrl()
         {

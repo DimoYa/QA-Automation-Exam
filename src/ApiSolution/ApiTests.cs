@@ -14,6 +14,7 @@ namespace ApiSolution
     [TestFixture]
     public class ApiTests
     {
+        private const string ApiEndpoint = "https://contactbook.dimoya.repl.co/api/";
         private HttpClient httpClient;
 
         [OneTimeSetUp]
@@ -21,7 +22,7 @@ namespace ApiSolution
         {
             this.httpClient = new HttpClient()
             {
-                BaseAddress = new Uri("https://contactbook.nakov.repl.co/api/"),
+                BaseAddress = new Uri(ApiEndpoint),
                 Timeout = TimeSpan.FromSeconds(3)
             };
         }
@@ -53,11 +54,11 @@ namespace ApiSolution
         }
 
         [Test]
-        public async Task SearchValidContactShouldReturnResult()
+        public async Task SearchValidContactShouldReturnCorrectResult()
         {
             //Arrange
             var keyword = "albert";
-            var request = new HttpRequestMessage(HttpMethod.Get, $"contacts/search/{keyword }");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"contacts/search/{keyword}");
 
             //Act
             var response = await this.httpClient.SendAsync(request);
@@ -77,7 +78,7 @@ namespace ApiSolution
         {
             //Arrange
             var keyword = $"missing{Guid.NewGuid()}";
-            var request = new HttpRequestMessage(HttpMethod.Get, $"contacts/search/{keyword }");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"contacts/search/{keyword}");
 
             //Act
             var response = await this.httpClient.SendAsync(request);
@@ -128,7 +129,7 @@ namespace ApiSolution
                 LastName = $"Last{Guid.NewGuid()}",
                 Email = $"email@{Guid.NewGuid()}.com",
                 Phone = Guid.NewGuid().ToString(),
-                Comments = $"comments@{Guid.NewGuid()}.com"
+                Comments = $"comments{Guid.NewGuid()}"
             };
             var response = await CreateContact(validContract);
             var contact = JsonConvert.DeserializeObject<CreateContactResponse>(await response.Content.ReadAsStringAsync());
@@ -141,7 +142,7 @@ namespace ApiSolution
                 Assert.AreEqual(validContract.FirstName, contact.Contact.FirstName, "First Name should be correct");
                 Assert.AreEqual(validContract.LastName, contact.Contact.LastName, "Last Name should be correct");
                 Assert.AreEqual(validContract.Email, contact.Contact.Email, "Email should be correct");
-                Assert.AreEqual(validContract.Phone, contact.Contact.Phone, "Phonee should be correct");
+                Assert.AreEqual(validContract.Phone, contact.Contact.Phone, "Phone should be correct");
                 Assert.AreEqual(validContract.Comments, contact.Contact.Comments, "Comments should be correct");
             });
         }
@@ -150,28 +151,29 @@ namespace ApiSolution
         public async Task NewlyCreatedContactShouldBeListedInTheContactList()
         {
             //Arrange
-            var validContract = new ContactRequest
+            var validContact = new ContactRequest
             {
                 FirstName = $"First{Guid.NewGuid()}",
                 LastName = $"Last{Guid.NewGuid()}",
                 Email = $"email@{Guid.NewGuid()}.com",
                 Phone = Guid.NewGuid().ToString(),
-                Comments = $"comments@{Guid.NewGuid()}.com"
+                Comments = $"comments{Guid.NewGuid()}"
             };
-            var response = await CreateContact(validContract);
+
+            var response = await CreateContact(validContact);
             response.EnsureSuccessStatusCode();
 
             //Act
             var request = new HttpRequestMessage(HttpMethod.Get, "contacts");
             response = await this.httpClient.SendAsync(request);
             var contacts = JsonConvert.DeserializeObject<List<ContactResponse>>(await response.Content.ReadAsStringAsync());
-            var latestContract = contacts.FirstOrDefault(x => x.FirstName == validContract.FirstName);
+            var latestContact = contacts.FirstOrDefault(x => x.FirstName == validContact.FirstName);
 
             //Assert
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, "Status code should be OK");
-                Assert.That(latestContract, Is.Not.Null, "Contact should be not null");
+                Assert.That(latestContact, Is.Not.Null, "Contact should be not null");
             });
         }
 

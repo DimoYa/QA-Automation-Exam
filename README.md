@@ -10,4 +10,4 @@ Implementation of POM, AAA
 
 ![image](https://user-images.githubusercontent.com/25158666/108911575-15babf00-7630-11eb-9f8f-a0dd1645258d.png)
 
-* Ppplication under test - https://contactbook.dimoya.repl.co/
+* Аpplication under test - https://contactbook.dimoya.repl.co/
